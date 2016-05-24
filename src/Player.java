@@ -38,7 +38,7 @@ public class Player {
 
 	
 	public static void getNamesForInput(int star, double prob, String element) throws IOException {
-		for (String line : Files.readAllLines(Paths.get(element), StandardCharsets.US_ASCII)) {
+		for (String line : Files.readAllLines(Paths.get("characterList/"+ element), StandardCharsets.US_ASCII)) {
 			if (line.length() == 1){
 				star = Integer.parseInt(line);
 				prob = listOfProb.get(star-3);

@@ -46,7 +46,7 @@ public class Main {
 		
 		
 		BufferedImage myPicture = ImageIO.read(new File("pictures/background.jpg"));
-		Image scaledImage = myPicture.getScaledInstance(panel.getWidth(),panel.getHeight(),Image.SCALE_SMOOTH);
+		Image scaledImage = myPicture.getScaledInstance(openingPanel.getWidth(),openingPanel.getHeight(),Image.SCALE_SMOOTH);
 		JLabel picLabel = new JLabel(new ImageIcon(scaledImage));
 		openingPanel.add(picLabel);
 		openingPanel.add(label);
