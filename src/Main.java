@@ -35,7 +35,7 @@ public class Main {
 		frame.setSize(900, 600);
 
 		BufferedImage myPicture = ImageIO.read(new File("pictures/whiteBackground.jpg"));
-		Image scaledImage = myPicture.getScaledInstance(frame.getWidth()/4,frame.getHeight()/4,Image.SCALE_SMOOTH);
+		Image scaledImage = myPicture.getScaledInstance(200,400,Image.SCALE_SMOOTH);
 		JLabel picLabel = new JLabel(new ImageIcon(scaledImage));
 		
 		
@@ -50,17 +50,22 @@ public class Main {
 		draw.setText("Draw");
 		draw.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent evt) {
+					String name0 = Player.drawPlayer().name;
 					String name1 = Player.drawPlayer().name;
 					String name2 = Player.drawPlayer().name;
-					String name3 = Player.drawPlayer().name;
+					System.out.println(name0);
 					System.out.println(name1);
+					System.out.println(name2);
 //						System.out.println(Player.drawPlayer().name);
 						try {
-							BufferedImage bi = getBufferedImagePNG(name1);
-							card0.setIcon(setImage(bi));
+							card0.setIcon(setImage(getBufferedImagePNG(name0)));
+							card1.setIcon(setImage(getBufferedImagePNG(name1)));
+							card2.setIcon(setImage(getBufferedImagePNG(name2)));
 						} catch (IOException e) {
 							try {
-								BufferedImage bi = getBufferedImageJPG(name1);
+								card0.setIcon(setImage(getBufferedImageJPG(name0)));
+								card1.setIcon(setImage(getBufferedImageJPG(name1)));
+								card2.setIcon(setImage(getBufferedImageJPG(name2)));
 							} catch (IOException e1) {							
 							}
 							e.printStackTrace();
@@ -101,7 +106,7 @@ public class Main {
 	}
 	
 	public static ImageIcon setImage(BufferedImage pic){
-		Image scaledImage = pic.getScaledInstance(200,200,Image.SCALE_SMOOTH);
+		Image scaledImage = pic.getScaledInstance(200,400,Image.SCALE_SMOOTH);
 		ImageIcon imageIcon = new ImageIcon(scaledImage);
 		return imageIcon;
 	}
