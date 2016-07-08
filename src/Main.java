@@ -35,7 +35,7 @@ public class Main {
 		frame.setSize(900, 600);
 
 		BufferedImage myPicture = ImageIO.read(new File("pictures/whiteBackground.jpg"));
-		Image scaledImage = myPicture.getScaledInstance(200,400,Image.SCALE_SMOOTH);
+		Image scaledImage = myPicture.getScaledInstance(250,400,Image.SCALE_SMOOTH);
 		JLabel picLabel = new JLabel(new ImageIcon(scaledImage));
 		
 		
@@ -45,7 +45,7 @@ public class Main {
 		final JLabel card1 = new JLabel(new ImageIcon(scaledImage));
 		final JLabel card2 = new JLabel(new ImageIcon(scaledImage));
 		
-		JLabel label = new JLabel("Normal 10 draw!");
+		JLabel label = new JLabel("Normal 3 draw!");
 		JButton draw = new JButton();
 		draw.setText("Draw");
 		draw.addActionListener(new ActionListener() {
@@ -76,11 +76,7 @@ public class Main {
 		drawPanel.add(draw);
 
 		
-		
-	
 
-
-	
 		frame.add(drawPanel, BorderLayout.PAGE_START);
 		//frame.add(picLabel, BorderLayout.CENTER);
 		frame.add(card0, BorderLayout.LINE_START);
@@ -97,25 +93,22 @@ public class Main {
 	
 	
 	public static BufferedImage getBufferedImageJPG(String name) throws IOException{
-		BufferedImage buffered = ImageIO.read(new File("pictures/" + name + ".jpg"));
+		String noSpace = name.replaceAll(" ",  "");
+		System.out.println(noSpace);
+		BufferedImage buffered = ImageIO.read(new File("pictures/" + noSpace + ".jpg"));
 		return buffered;
 	}
 	public static BufferedImage getBufferedImagePNG(String name) throws IOException{
-		BufferedImage buffered = ImageIO.read(new File("pictures/" + name + ".png"));
+		String noSpace = name.replaceAll(" ",  "");
+		BufferedImage buffered = ImageIO.read(new File("pictures/" + noSpace + ".png"));
 		return buffered;
 	}
 	
 	public static ImageIcon setImage(BufferedImage pic){
-		Image scaledImage = pic.getScaledInstance(200,400,Image.SCALE_SMOOTH);
+		Image scaledImage = pic.getScaledInstance(250,400,Image.SCALE_SMOOTH);
 		ImageIcon imageIcon = new ImageIcon(scaledImage);
 		return imageIcon;
 	}
 	
-	public void setDrawImage(BufferedImage bi){
-		
-		
-	}
-
-
 
 	}

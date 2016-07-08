@@ -75,7 +75,7 @@ public class Player {
 		}
 	}	
 	
-	public static String drawPlayer() {
+	public static Player drawPlayer() {
 		int randomIndex = -1;
 		double random = Math.random() * totalWeight;
 		for (int i = 0; i < playersProbability.size(); ++i) {
@@ -89,7 +89,7 @@ public class Player {
 		String name = randomPlayer.name;
 		String star = Integer.toString(randomPlayer.star);
 		String value = name + " " + star;
-		return value;
+		return randomPlayer;
 	}
 }
 
