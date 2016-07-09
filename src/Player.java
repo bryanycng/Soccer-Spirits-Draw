@@ -91,5 +91,13 @@ public class Player {
 		String value = name + " " + star;
 		return randomPlayer;
 	}
+	public Player getPlayer(String name) {
+		for(Player p: players) {
+			if (p.name == name) {
+				return p;
+			}
+		}
+		return null;
+	}
 }
 

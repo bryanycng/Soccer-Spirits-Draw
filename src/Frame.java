@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,7 +20,7 @@ import javax.swing.JPanel;
 
 public class Frame {
 	
-	static int frameH = 500;
+	static int frameH = 800;
 	static int frameW = 1150;
 	static int cardH = 300;
 	static int cardW = 200;
@@ -28,7 +30,7 @@ public class Frame {
 	JFrame frame = new JFrame("Soccer Spirits Draw Simultor");
 	frame.setSize(frameW, frameH);
 
-	ImageIcon whiteBackground = setImage(getBufferedImagePNG("whiteBackground"));
+	ImageIcon whiteBackground = setCardSize(getBufferedImagePNG("whiteBackground"));
 	
 	JPanel titlePanel = new JPanel();
 	JPanel drawPanel = new JPanel();
@@ -42,37 +44,76 @@ public class Frame {
 	final JLabel card3 = new JLabel(whiteBackground);
 	final JLabel card4 = new JLabel(whiteBackground);
 	
-	JLabel label = new JLabel("Normal 5 draw!");
-	JButton draw = new JButton();
+	
+	JLabel title = new JLabel("Normal 5 draw!");
+	title.setFont(new Font("URW Chancery L", Font.PLAIN, 50));
+	
+	JButton draw = new JButton(setImageSize(getBufferedImagePNG("drawButton3"), 250,150));
+	draw.setHorizontalTextPosition(JButton.CENTER);
+	draw.setVerticalTextPosition(JButton.CENTER);
+	draw.setBorder(null);
+	draw.setBackground(null);
+
+
 	draw.setText("Draw");
+	draw.setFont(new Font("URW Chancery L", Font.PLAIN, 50));
 	draw.addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
-				String name0 = Player.drawPlayer().name;
-				String name1 = Player.drawPlayer().name;
-				String name2 = Player.drawPlayer().name;
-				String name3 = Player.drawPlayer().name;
-				String name4 = Player.drawPlayer().name;
-				System.out.println(name0);
-				System.out.println(name1);
-				System.out.println(name2);
+			  
+			  	card0.setBorder(null);
+			  	card1.setBorder(null);
+			  	card2.setBorder(null);
+			  	card3.setBorder(null);
+			  	card4.setBorder(null);
+			  	
+			  	Player player0 = Player.drawPlayer();
+			  	Player player1 = Player.drawPlayer();
+			  	Player player2 = Player.drawPlayer();
+			  	Player player3 = Player.drawPlayer();
+			  	Player player4 = Player.drawPlayer();
+			  
+			  	setCardBorder(player0, card0);
+			  	setCardBorder(player1, card1);
+			  	setCardBorder(player2, card2);
+			  	setCardBorder(player3, card3);
+			  	setCardBorder(player4, card4);
+			  	
+				System.out.println(player0.name);
+				System.out.println(player1.name);
+				System.out.println(player2.name);
+				System.out.println(player3.name);
+				System.out.println(player4.name);
+				
 //					System.out.println(Player.drawPlayer().name);
 					try {
-						card0.setIcon(setImage(getBufferedImagePNG(name0)));
-						card1.setIcon(setImage(getBufferedImagePNG(name1)));
-						card2.setIcon(setImage(getBufferedImagePNG(name2)));
-						card3.setIcon(setImage(getBufferedImagePNG(name3)));
-						card4.setIcon(setImage(getBufferedImagePNG(name4)));
+						card0.setIcon(setCardSize(getBufferedImagePNG(player0.name)));
+						card1.setIcon(setCardSize(getBufferedImagePNG(player1.name)));
+						card2.setIcon(setCardSize(getBufferedImagePNG(player2.name)));
+						card3.setIcon(setCardSize(getBufferedImagePNG(player3.name)));
+						card4.setIcon(setCardSize(getBufferedImagePNG(player4.name)));
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 		  		}
 			});		
 	
+	titlePanel.setBackground(null);
+	title.setForeground(Color.WHITE);
 	titlePanel.add(Box.createVerticalStrut(80)); 
-	titlePanel.add(label);
+	titlePanel.add(title);
+
+	drawPanel.setBackground(null);
+	draw.setForeground(Color.WHITE);
 	drawPanel.add(Box.createVerticalStrut(80));
 	drawPanel.add(draw);
 	
+	cardPanel0.setBackground(null);
+	cardPanel1.setBackground(null);
+	cardPanel2.setBackground(null);
+	
+	cardPanel0.add(Box.createVerticalStrut(450)); 
+	cardPanel1.add(Box.createVerticalStrut(450)); 
+	cardPanel2.add(Box.createVerticalStrut(450)); 
 	cardPanel0.add(Box.createHorizontalStrut(15)); 
 	cardPanel0.add(card0);
 	cardPanel0.add(Box.createHorizontalStrut(15)); 
@@ -82,7 +123,6 @@ public class Frame {
 	cardPanel2.add(Box.createHorizontalStrut(15)); 
 	cardPanel2.add(card4);
 	cardPanel2.add(Box.createHorizontalStrut(15)); 
-	
 
 	frame.add(titlePanel, BorderLayout.PAGE_START);
 	frame.add(drawPanel, BorderLayout.PAGE_END);
@@ -91,7 +131,7 @@ public class Frame {
 	frame.add(cardPanel1, BorderLayout.CENTER);
 	frame.add(cardPanel2, BorderLayout.LINE_END);
 	
-	frame.getContentPane().setBackground(Color.BLUE);
+	frame.getContentPane().setBackground(Color.blue);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setLocationRelativeTo(null);
 	frame.setVisible(true);
@@ -105,10 +145,24 @@ public static BufferedImage getBufferedImagePNG(String name) throws IOException{
 	return buffered;
 }
 
-public static ImageIcon setImage(BufferedImage pic){
+//sets size of card
+public static ImageIcon setCardSize(BufferedImage pic){
 	Image scaledImage = pic.getScaledInstance(cardW,cardH,Image.SCALE_SMOOTH);
 	ImageIcon imageIcon = new ImageIcon(scaledImage);
 	return imageIcon;
+}
+
+//adjustable size with parameter
+public static ImageIcon setImageSize(BufferedImage pic, int width, int height){
+	Image scaledImage = pic.getScaledInstance(width,height,Image.SCALE_SMOOTH);
+	ImageIcon imageIcon = new ImageIcon(scaledImage);
+	return imageIcon;
+}
+
+public void setCardBorder(Player p, JLabel card) {
+	if (p.star == 5){
+	card.setBorder(BorderFactory.createLineBorder(Color.CYAN, 10));
+	}
 }
 
 }
