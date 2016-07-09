@@ -1,0 +1,16 @@
+TODO list:
+
+-change layout to display 5 cards at once
+-have a storage of drawn cards and make it displayable (of day)
+-dark blue background
+-give 5/6stars a bright blue border
+-cool font
+-fancy button 
+-add scout feature which contains:
+	-gatekeepers
+	-spiritstones
+	-swirlies
+	-managers
+
+
+
