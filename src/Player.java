@@ -12,7 +12,6 @@ public class Player {
 	static double prob4 = 0.22;
 	static double prob5 = 0.0495;
 	static double prob6 = 0.0005;
-	
 	static double totalWeight = 0.0d;
 	
 	String name;
