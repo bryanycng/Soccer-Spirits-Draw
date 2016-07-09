@@ -8,6 +8,7 @@ import java.util.Random;
 
 
 public class Player {
+	
 	static double prob3 = 0.73;
 	static double prob4 = 0.22;
 	static double prob5 = 0.0495;
