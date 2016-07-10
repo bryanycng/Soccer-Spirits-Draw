@@ -4,7 +4,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 
 public class Player {
@@ -86,9 +85,6 @@ public class Player {
 		    }
 		}
 		Player randomPlayer = players.get(randomIndex);
-		String name = randomPlayer.name;
-		String star = Integer.toString(randomPlayer.star);
-		String value = name + " " + star;
 		return randomPlayer;
 	}
 	public Player getPlayer(String name) {
