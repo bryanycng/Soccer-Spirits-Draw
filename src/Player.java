@@ -22,6 +22,7 @@ public class Player {
 	public static List<Player> players = new ArrayList<Player>();
 	public static List<Double> playersProbability = new ArrayList<Double>();
 	public static List<Double> listOfProb = new ArrayList<Double>();
+	public static String[] listOfElements = {"ardor", "dark", "light", "thunder", "whirlwind"};
 	
 	
 	public Player(String n, String e, int s, double p ) {
@@ -57,11 +58,9 @@ public class Player {
 		listOfProb.add(prob5);
 		listOfProb.add(prob6);
 		
-		getNamesForInput(star, prob,"ardor");
-		getNamesForInput(star, prob,"dark");
-		getNamesForInput(star, prob,"light");
-		getNamesForInput(star, prob,"thunder");
-		getNamesForInput(star, prob,"whirlwind");
+		for (String element: listOfElements) {	
+		getNamesForInput(star, prob, element);
+		}
 	}
 	
 	public static void addAllPlayerProbabilities() {
