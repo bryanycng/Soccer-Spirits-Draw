@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -20,6 +21,7 @@ public class Player {
 	double probability;
 
 	public static List<Player> players = new ArrayList<Player>();
+	public static List<Player> database = new ArrayList<Player>();
 	public static List<Double> playersProbability = new ArrayList<Double>();
 	public static List<Double> listOfProb = new ArrayList<Double>();
 	public static String[] listOfElements = {"ardor", "dark", "light", "thunder", "whirlwind"};
@@ -38,7 +40,8 @@ public class Player {
 
 	
 	public static void getNamesForInput(int star, double prob, String element) throws IOException {
-		for (String line : Files.readAllLines(Paths.get("characterList/"+ element), StandardCharsets.US_ASCII)) {
+		String path = new File("").getAbsolutePath();
+		for (String line : Files.readAllLines(Paths.get(path + "/resources/characterList/"+ element), StandardCharsets.US_ASCII)) {
 			if (line.length() == 1){
 				star = Integer.parseInt(line);
 				prob = listOfProb.get(star-3);
@@ -86,6 +89,16 @@ public class Player {
 		Player randomPlayer = players.get(randomIndex);
 		return randomPlayer;
 	}
+	
+	public static Player drawPlayerElement(String element){
+		Player randomPlayer = drawPlayer();
+		if (randomPlayer.element == element){
+			return randomPlayer;
+		}
+		return drawPlayerElement(element);
+	}
+	
+	
 	public Player getPlayer(String name) {
 		for(Player p: players) {
 			if (p.name == name) {

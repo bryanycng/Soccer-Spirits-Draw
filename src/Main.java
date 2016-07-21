@@ -9,9 +9,6 @@ public class Main {
 		Player.addAllPlayers();
 		Player.addAllPlayerProbabilities();
 		poolOfPlayers = Player.players;
-//		for (Player p : poolOfPlayers){
-//		System.out.println(p.name + " " + p.element + " " + p.star + " " + p.probability);
-//		}
 		
 		new Frame();
 	

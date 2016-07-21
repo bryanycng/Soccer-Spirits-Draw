@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Array;
 
 import javax.imageio.ImageIO;
@@ -121,8 +122,9 @@ public class Frame {
 }
 
 public static BufferedImage getBufferedImagePNG(String name) throws IOException{
+	String path = new File("").getAbsolutePath();
 	String noSpace = name.replaceAll(" ",  "");
-	BufferedImage buffered = ImageIO.read(new File("pictures/" + noSpace + ".png"));
+	BufferedImage buffered = ImageIO.read(new File(path + "/resources/pictures/" + noSpace + ".png"));
 	return buffered;
 }
 
@@ -143,6 +145,9 @@ public static ImageIcon setImageSize(BufferedImage pic, int width, int height){
 public void setCardBorder(Player p, JLabel card) {
 	if (p.star == 5){
 	card.setBorder(BorderFactory.createLineBorder(Color.decode("#0033cc"), 10));
+	}
+	if (p.star == 6){
+	card.setBorder(BorderFactory.createLineBorder(Color.MAGENTA, 10));
 	}
 }
 
